@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 #include <assert.h>
 #include <math.h>
@@ -166,7 +166,7 @@ void train_go(char *cfgfile, char *weightfile, char *filename, int *gpus, int ng
     network *net = nets[0];
     printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
 
-    char *backup_directory = "/home/pjreddie/backup/";
+    char *backup_directory = (char *)"/home/pjreddie/backup/";
 
     char buff[256];
     moves m = load_go_moves(filename);
@@ -1342,7 +1342,7 @@ void run_go(int argc, char **argv)
         return;
     }
 
-    char *gpu_list = find_char_arg(argc, argv, "-gpus", 0);
+    char *gpu_list = find_char_arg(argc, argv, (char *)"-gpus", 0);
     int *gpus = 0;
     int gpu = 0;
     int ngpus = 0;
@@ -1364,19 +1364,19 @@ void run_go(int argc, char **argv)
         gpus = &gpu;
         ngpus = 1;
     }
-    int clear = find_arg(argc, argv, "-clear");
+    int clear = find_arg(argc, argv, (char *)"-clear");
 
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;
     char *c2 = (argc > 5) ? argv[5] : 0;
     char *w2 = (argc > 6) ? argv[6] : 0;
-    int multi = find_arg(argc, argv, "-multi");
-    int anon = find_arg(argc, argv, "-anon");
-    int iters = find_int_arg(argc, argv, "-iters", 500);
-    int resign = find_int_arg(argc, argv, "-resign", 175);
-    float cpuct = find_float_arg(argc, argv, "-cpuct", 5);
-    float temp = find_float_arg(argc, argv, "-temp", .1);
-    float time = find_float_arg(argc, argv, "-time", 0);
+    int multi = find_arg(argc, argv, (char *)"-multi");
+    int anon = find_arg(argc, argv, (char *)"-anon");
+    int iters = find_int_arg(argc, argv, (char *)"-iters", 500);
+    int resign = find_int_arg(argc, argv, (char *)"-resign", 175);
+    float cpuct = find_float_arg(argc, argv, (char *)"-cpuct", 5);
+    float temp = find_float_arg(argc, argv, (char *)"-temp", .1);
+    float time = find_float_arg(argc, argv, (char *)"-time", 0);
     if(0==strcmp(argv[2], "train")) train_go(cfg, weights, c2, gpus, ngpus, clear);
     else if(0==strcmp(argv[2], "valid")) valid_go(cfg, weights, multi, c2);
     else if(0==strcmp(argv[2], "self")) self_go(cfg, weights, c2, w2, multi);

@@ -1,16 +1,16 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 void train_tag(char *cfgfile, char *weightfile, int clear)
 {
     srand(time(0));
     float avg_loss = -1;
     char *base = basecfg(cfgfile);
-    char *backup_directory = "/home/pjreddie/backup/";
+    char backup_directory[] = "/home/pjreddie/backup/";
     printf("%s\n", base);
     network *net = load_network(cfgfile, weightfile, clear);
     printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     int imgs = 1024;
-    list *plist = get_paths("/home/pjreddie/tag/train.list");
+    list *plist = get_paths((char *)"/home/pjreddie/tag/train.list");
     char **paths = (char **)list_to_array(plist);
     printf("%d\n", plist->size);
     int N = plist->size;
@@ -92,7 +92,7 @@ void test_tag(char *cfgfile, char *weightfile, char *filename)
     set_batch_network(net, 1);
     srand(2222222);
     int i = 0;
-    char **names = get_labels("data/tags.txt");
+    char **names = get_labels((char *)"data/tags.txt");
     clock_t time;
     int indexes[10];
     char buff[256];
@@ -136,7 +136,7 @@ void run_tag(int argc, char **argv)
         return;
     }
 
-    int clear = find_arg(argc, argv, "-clear");
+    int clear = find_arg(argc, argv, (char *)"-clear");
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;
     char *filename = (argc > 5) ? argv[5] : 0;

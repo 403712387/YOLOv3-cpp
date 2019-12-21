@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 #include <time.h>
 #include <assert.h>
 
@@ -30,9 +30,9 @@ void train_regressor(char *datacfg, char *cfgfile, char *weightfile, int *gpus, 
     printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     list *options = read_data_cfg(datacfg);
 
-    char *backup_directory = option_find_str(options, "backup", "/backup/");
-    char *train_list = option_find_str(options, "train", "data/train.list");
-    int classes = option_find_int(options, "classes", 1);
+    char *backup_directory = option_find_str(options, (char *)"backup", (char *)"/backup/");
+    char *train_list = option_find_str(options, (char *)"train", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 1);
 
     list *plist = get_paths(train_list);
     char **paths = (char **)list_to_array(plist);
@@ -206,7 +206,7 @@ void run_regressor(int argc, char **argv)
         return;
     }
 
-    char *gpu_list = find_char_arg(argc, argv, "-gpus", 0);
+    char *gpu_list = find_char_arg(argc, argv, (char *)"-gpus", 0);
     int *gpus = 0;
     int gpu = 0;
     int ngpus = 0;
@@ -229,8 +229,8 @@ void run_regressor(int argc, char **argv)
         ngpus = 1;
     }
 
-    int cam_index = find_int_arg(argc, argv, "-c", 0);
-    int clear = find_arg(argc, argv, "-clear");
+    int cam_index = find_int_arg(argc, argv, (char *)"-c", 0);
+    int clear = find_arg(argc, argv, (char *)"-clear");
     char *data = argv[3];
     char *cfg = argv[4];
     char *weights = (argc > 5) ? argv[5] : 0;

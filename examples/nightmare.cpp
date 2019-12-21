@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 #include <math.h>
 
@@ -298,20 +298,20 @@ void run_nightmare(int argc, char **argv)
     char *input = argv[4];
     int max_layer = atoi(argv[5]);
 
-    int range = find_int_arg(argc, argv, "-range", 1);
-    int norm = find_int_arg(argc, argv, "-norm", 1);
-    int rounds = find_int_arg(argc, argv, "-rounds", 1);
-    int iters = find_int_arg(argc, argv, "-iters", 10);
-    int octaves = find_int_arg(argc, argv, "-octaves", 4);
-    float zoom = find_float_arg(argc, argv, "-zoom", 1.);
-    float rate = find_float_arg(argc, argv, "-rate", .04);
-    float thresh = find_float_arg(argc, argv, "-thresh", 1.);
-    float rotate = find_float_arg(argc, argv, "-rotate", 0);
-    float momentum = find_float_arg(argc, argv, "-momentum", .9);
-    float lambda = find_float_arg(argc, argv, "-lambda", .01);
-    char *prefix = find_char_arg(argc, argv, "-prefix", 0);
-    int reconstruct = find_arg(argc, argv, "-reconstruct");
-    int smooth_size = find_int_arg(argc, argv, "-smooth", 1);
+    int range = find_int_arg(argc, argv, (char *)"-range", 1);
+    int norm = find_int_arg(argc, argv, (char *)"-norm", 1);
+    int rounds = find_int_arg(argc, argv, (char *)"-rounds", 1);
+    int iters = find_int_arg(argc, argv, (char *)"-iters", 10);
+    int octaves = find_int_arg(argc, argv, (char *)"-octaves", 4);
+    float zoom = find_float_arg(argc, argv, (char *)"-zoom", 1.);
+    float rate = find_float_arg(argc, argv, (char *)"-rate", .04);
+    float thresh = find_float_arg(argc, argv, (char *)"-thresh", 1.);
+    float rotate = find_float_arg(argc, argv, (char *)"-rotate", 0);
+    float momentum = find_float_arg(argc, argv, (char *)"-momentum", .9);
+    float lambda = find_float_arg(argc, argv, (char *)"-lambda", .01);
+    char *prefix = find_char_arg(argc, argv, (char *)"-prefix", 0);
+    int reconstruct = find_arg(argc, argv, (char *)"-reconstruct");
+    int smooth_size = find_int_arg(argc, argv, (char *)"-smooth", 1);
 
     network *net = load_network(cfg, weights, 0);
     char *cfgbase = basecfg(cfg);

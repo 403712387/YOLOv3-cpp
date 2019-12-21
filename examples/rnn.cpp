@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 #include <math.h>
 
@@ -57,7 +57,7 @@ char **read_tokens(char *filename, size_t *read)
             size = size*2;
             d = (char **)realloc(d, size*sizeof(char *));
         }
-        if(0==strcmp(line, "<NEWLINE>")) line = "\n";
+        if(0==strcmp(line, (char *)"<NEWLINE>")) line = (char *)"\n";
         d[count-1] = line;
     }
     fclose(fp);
@@ -167,7 +167,7 @@ void train_char_rnn(char *cfgfile, char *weightfile, char *filename, int clear, 
         size = strlen((const char*)text);
     }
 
-    char *backup_directory = "/home/pjreddie/backup/";
+    char *backup_directory = (char *)"/home/pjreddie/backup/";
     char *base = basecfg(cfgfile);
     fprintf(stderr, "%s\n", base);
     float avg_loss = -1;
@@ -522,14 +522,14 @@ void run_char_rnn(int argc, char **argv)
         fprintf(stderr, "usage: %s %s [train/test/valid] [cfg] [weights (optional)]\n", argv[0], argv[1]);
         return;
     }
-    char *filename = find_char_arg(argc, argv, "-file", "data/shakespeare.txt");
-    char *seed = find_char_arg(argc, argv, "-seed", "\n\n");
-    int len = find_int_arg(argc, argv, "-len", 1000);
-    float temp = find_float_arg(argc, argv, "-temp", .7);
-    int rseed = find_int_arg(argc, argv, "-srand", time(0));
-    int clear = find_arg(argc, argv, "-clear");
-    int tokenized = find_arg(argc, argv, "-tokenized");
-    char *tokens = find_char_arg(argc, argv, "-tokens", 0);
+    char *filename = find_char_arg(argc, argv, (char *)"-file", (char *)"data/shakespeare.txt");
+    char *seed = find_char_arg(argc, argv, (char *)"-seed", (char *)"\n\n");
+    int len = find_int_arg(argc, argv, (char *)"-len", 1000);
+    float temp = find_float_arg(argc, argv, (char *)"-temp", .7);
+    int rseed = find_int_arg(argc, argv, (char *)"-srand", time(0));
+    int clear = find_arg(argc, argv, (char *)"-clear");
+    int tokenized = find_arg(argc, argv, (char *)"-tokenized");
+    char *tokens = find_char_arg(argc, argv, (char *)"-tokens", 0);
 
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;

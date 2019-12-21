@@ -1,9 +1,9 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 void train_super(char *cfgfile, char *weightfile, int clear)
 {
-    char *train_images = "/data/imagenet/imagenet1k.train.list";
-    char *backup_directory = "/home/pjreddie/backup/";
+    char *train_images = (char *)"/data/imagenet/imagenet1k.train.list";
+    char *backup_directory = (char *)"/home/pjreddie/backup/";
     srand(time(0));
     char *base = basecfg(cfgfile);
     printf("%s\n", base);
@@ -114,7 +114,7 @@ void run_super(int argc, char **argv)
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;
     char *filename = (argc > 5) ? argv[5] : 0;
-    int clear = find_arg(argc, argv, "-clear");
+    int clear = find_arg(argc, argv, (char *)"-clear");
     if(0==strcmp(argv[2], "train")) train_super(cfg, weights, clear);
     else if(0==strcmp(argv[2], "test")) test_super(cfg, weights, filename);
     /*

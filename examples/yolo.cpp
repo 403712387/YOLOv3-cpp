@@ -1,13 +1,13 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 #ifdef WIN32
 #define snprintf _snprintf
 #endif
-char *voc_names[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
+char *voc_names[] = {(char *)"aeroplane", (char *)"bicycle", (char *)"bird", (char *)"boat", (char *)"bottle", (char *)"bus", (char *)"car", (char *)"cat", (char *)"chair", (char *)"cow", (char *)"diningtable", (char *)"dog", (char *)"horse", (char *)"motorbike", (char *)"person", (char *)"pottedplant", (char *)"sheep", (char *)"sofa", (char *)"train", (char *)"tvmonitor"};
 
 void train_yolo(char *cfgfile, char *weightfile)
 {
-    char *train_images = "/data/voc/train.txt";
-    char *backup_directory = "/home/pjreddie/backup/";
+    char train_images[] = "/data/voc/train.txt";
+    char backup_directory[] = "/home/pjreddie/backup/";
     srand(time(0));
     char *base = basecfg(cfgfile);
     printf("%s\n", base);
@@ -107,9 +107,9 @@ void validate_yolo(char *cfg, char *weights)
     fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     srand(time(0));
 
-    char *base = "results/comp4_det_test_";
+    char base[] = "results/comp4_det_test_";
     //list *plist = get_paths("data/voc.2007.test");
-    list *plist = get_paths("/home/pjreddie/data/voc/2007_test.txt");
+    list *plist = get_paths((char *)"/home/pjreddie/data/voc/2007_test.txt");
     //list *plist = get_paths("data/voc.2012.test");
     char **paths = (char **)list_to_array(plist);
 
@@ -194,8 +194,8 @@ void validate_yolo_recall(char *cfg, char *weights)
     fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     srand(time(0));
 
-    char *base = "results/comp4_det_test_";
-    list *plist = get_paths("data/voc.2007.test");
+    char base[] = "results/comp4_det_test_";
+    list *plist = get_paths((char *)"data/voc.2007.test");
     char **paths = (char **)list_to_array(plist);
 
     layer l = net->layers[net->n-1];
@@ -234,10 +234,10 @@ void validate_yolo_recall(char *cfg, char *weights)
         if (nms) do_nms_obj(dets, side*side*l.n, 1, nms);
 
         char labelpath[4096];
-        find_replace(path, "images", "labels", labelpath);
-        find_replace(labelpath, "JPEGImages", "labels", labelpath);
-        find_replace(labelpath, ".jpg", ".txt", labelpath);
-        find_replace(labelpath, ".JPEG", ".txt", labelpath);
+        find_replace(path, (char *)"images", (char *)"labels", labelpath);
+        find_replace(labelpath, (char *)"JPEGImages", (char *)"labels", labelpath);
+        find_replace(labelpath, (char *)".jpg", (char *)".txt", labelpath);
+        find_replace(labelpath, (char *)".JPEG", (char *)".txt", labelpath);
 
         int num_labels = 0;
         box_label *truth = read_boxes(labelpath, &num_labels);
@@ -314,16 +314,16 @@ void test_yolo(char *cfgfile, char *weightfile, char *filename, float thresh)
 
 void run_yolo(int argc, char **argv)
 {
-    char *prefix = find_char_arg(argc, argv, "-prefix", 0);
-    float thresh = find_float_arg(argc, argv, "-thresh", .2);
-    int cam_index = find_int_arg(argc, argv, "-c", 0);
-    int frame_skip = find_int_arg(argc, argv, "-s", 0);
+    char *prefix = find_char_arg(argc, argv, (char *)"-prefix", 0);
+    float thresh = find_float_arg(argc, argv, (char *)"-thresh", .2);
+    int cam_index = find_int_arg(argc, argv, (char *)"-c", 0);
+    int frame_skip = find_int_arg(argc, argv, (char *)"-s", 0);
     if(argc < 4){
         fprintf(stderr, "usage: %s %s [train/test/valid] [cfg] [weights (optional)]\n", argv[0], argv[1]);
         return;
     }
 
-    int avg = find_int_arg(argc, argv, "-avg", 1);
+    int avg = find_int_arg(argc, argv, (char *)"-avg", 1);
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;
     char *filename = (argc > 5) ? argv[5]: 0;

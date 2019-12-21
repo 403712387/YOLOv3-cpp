@@ -1,8 +1,8 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 void train_writing(char *cfgfile, char *weightfile)
 {
-    char *backup_directory = "/home/pjreddie/backup/";
+    char backup_directory[] = "/home/pjreddie/backup/";
     srand(time(0));
     float avg_loss = -1;
     char *base = basecfg(cfgfile);
@@ -13,7 +13,7 @@ void train_writing(char *cfgfile, char *weightfile)
     }
     printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     int imgs = net->batch*net->subdivisions;
-    list *plist = get_paths("figures.list");
+    list *plist = get_paths((char *)"figures.list");
     char **paths = (char **)list_to_array(plist);
     clock_t time;
     int N = plist->size;

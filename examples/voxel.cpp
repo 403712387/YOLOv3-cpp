@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 void extract_voxel(char *lfile, char *rfile, char *prefix)
 {
@@ -38,8 +38,8 @@ void extract_voxel(char *lfile, char *rfile, char *prefix)
 
 void train_voxel(char *cfgfile, char *weightfile)
 {
-    char *train_images = "/data/imagenet/imagenet1k.train.list";
-    char *backup_directory = "/home/pjreddie/backup/";
+    char train_images[] = "/data/imagenet/imagenet1k.train.list";
+    char backup_directory[] = "/home/pjreddie/backup/";
     srand(time(0));
     char *base = basecfg(cfgfile);
     printf("%s\n", base);

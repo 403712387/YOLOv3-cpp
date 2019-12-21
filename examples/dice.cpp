@@ -1,13 +1,13 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
-char *dice_labels[] = {"face1","face2","face3","face4","face5","face6"};
+char *dice_labels[] = {(char *)"face1",(char *)"face2",(char *)"face3",(char *)"face4",(char *)"face5",(char *)"face6"};
 
 void train_dice(char *cfgfile, char *weightfile)
 {
     srand(time(0));
     float avg_loss = -1;
     char *base = basecfg(cfgfile);
-    char *backup_directory = "/home/pjreddie/backup/";
+    char *backup_directory = (char *)"/home/pjreddie/backup/";
     printf("%s\n", base);
     network *net = parse_network_cfg(cfgfile);
     if(weightfile){
@@ -17,7 +17,7 @@ void train_dice(char *cfgfile, char *weightfile)
     int imgs = 1024;
     int i = *net->seen/imgs;
     char **labels = dice_labels;
-    list *plist = get_paths("data/dice/dice.train.list");
+    list *plist = get_paths((char *)"data/dice/dice.train.list");
     char **paths = (char **)list_to_array(plist);
     printf("%d\n", plist->size);
     clock_t time;
@@ -51,7 +51,7 @@ void validate_dice(char *filename, char *weightfile)
     srand(time(0));
 
     char **labels = dice_labels;
-    list *plist = get_paths("data/dice/dice.val.list");
+    list *plist = get_paths((char *)"data/dice/dice.val.list");
 
     char **paths = (char **)list_to_array(plist);
     int m = plist->size;

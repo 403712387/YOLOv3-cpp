@@ -1,10 +1,10 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 #include <time.h>
 
 void train_swag(char *cfgfile, char *weightfile)
 {
-    char *train_images = "data/voc.0712.trainval";
-    char *backup_directory = "/home/pjreddie/backup/";
+    char train_images[] = "data/voc.0712.trainval";
+    char backup_directory[] = "/home/pjreddie/backup/";
     srand(time(0));
     char *base = basecfg(cfgfile);
     printf("%s\n", base);

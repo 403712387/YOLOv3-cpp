@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 #include <time.h>
 #include <assert.h>
@@ -43,13 +43,13 @@ void train_classifier(char *datacfg, char *cfgfile, char *weightfile, int *gpus,
     printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net->learning_rate, net->momentum, net->decay);
     list *options = read_data_cfg(datacfg);
 
-    char *backup_directory = option_find_str(options, "backup", "/backup/");
-    int tag = option_find_int_quiet(options, "tag", 0);
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *train_list = option_find_str(options, "train", "data/train.list");
-    char *tree = option_find_str(options, "tree", 0);
+    char *backup_directory = option_find_str(options, (char *)"backup", (char *)"/backup/");
+    int tag = option_find_int_quiet(options, (char *)"tag", 0);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *train_list = option_find_str(options, (char *)"train", (char *)"data/train.list");
+    char *tree = option_find_str(options, (char *)"tree", 0);
     if (tree) net->hierarchy = read_tree(tree);
-    int classes = option_find_int(options, "classes", 2);
+    int classes = option_find_int(options, (char *)"classes", 2);
 
     char **labels = 0;
     if(!tag){
@@ -184,10 +184,10 @@ void validate_classifier_crop(char *datacfg, char *filename, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *valid_list = option_find_str(options, "valid", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
-    int topk = option_find_int(options, "top", 1);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *valid_list = option_find_str(options, (char *)"valid", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
+    int topk = option_find_int(options, (char *)"top", 1);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(valid_list);
@@ -252,10 +252,10 @@ void validate_classifier_10(char *datacfg, char *filename, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *valid_list = option_find_str(options, "valid", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
-    int topk = option_find_int(options, "top", 1);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *valid_list = option_find_str(options, (char *)"valid", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
+    int topk = option_find_int(options, (char *)"top", 1);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(valid_list);
@@ -321,10 +321,10 @@ void validate_classifier_full(char *datacfg, char *filename, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *valid_list = option_find_str(options, "valid", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
-    int topk = option_find_int(options, "top", 1);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *valid_list = option_find_str(options, (char *)"valid", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
+    int topk = option_find_int(options, (char *)"top", 1);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(valid_list);
@@ -379,12 +379,12 @@ void validate_classifier_single(char *datacfg, char *filename, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *leaf_list = option_find_str(options, "leaves", 0);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *leaf_list = option_find_str(options, (char *)"leaves", 0);
     if(leaf_list) change_leaves(net->hierarchy, leaf_list);
-    char *valid_list = option_find_str(options, "valid", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
-    int topk = option_find_int(options, "top", 1);
+    char *valid_list = option_find_str(options, (char *)"valid", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
+    int topk = option_find_int(options, (char *)"top", 1);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(valid_list);
@@ -438,10 +438,10 @@ void validate_classifier_multi(char *datacfg, char *cfg, char *weights)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "labels", "data/labels.list");
-    char *valid_list = option_find_str(options, "valid", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
-    int topk = option_find_int(options, "top", 1);
+    char *label_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    char *valid_list = option_find_str(options, (char *)"valid", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
+    int topk = option_find_int(options, (char *)"top", 1);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(valid_list);
@@ -499,9 +499,9 @@ void try_classifier(char *datacfg, char *cfgfile, char *weightfile, char *filena
 
     list *options = read_data_cfg(datacfg);
 
-    char *name_list = option_find_str(options, "names", 0);
-    if(!name_list) name_list = option_find_str(options, "labels", "data/labels.list");
-    int top = option_find_int(options, "top", 1);
+    char *name_list = option_find_str(options, (char *)"names", 0);
+    if(!name_list) name_list = option_find_str(options, (char *)"labels", (char *)"data/labels.list");
+    int top = option_find_int(options, (char *)"top", 1);
 
     int i = 0;
     char **names = get_labels(name_list);
@@ -577,9 +577,9 @@ void predict_classifier(char *datacfg, char *cfgfile, char *weightfile, char *fi
 
     list *options = read_data_cfg(datacfg);
 
-    char *name_list = option_find_str(options, "names", 0);
-    if(!name_list) name_list = option_find_str(options, "labels", "data/labels.list");
-    if(top == 0) top = option_find_int(options, "top", 1);
+    char *name_list = option_find_str(options, (char *)"names", 0);
+    if(!name_list) name_list = option_find_str(options, (char *)"labels",(char *) "data/labels.list");
+    if(top == 0) top = option_find_int(options, (char *)"top", 1);
 
     int i = 0;
     char **names = get_labels(name_list);
@@ -632,9 +632,9 @@ void label_classifier(char *datacfg, char *filename, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *label_list = option_find_str(options, "names", "data/labels.list");
-    char *test_list = option_find_str(options, "test", "data/train.list");
-    int classes = option_find_int(options, "classes", 2);
+    char *label_list = option_find_str(options, (char *)"names", (char *)"data/labels.list");
+    char *test_list = option_find_str(options, (char *)"test", (char *)"data/train.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
 
     char **labels = get_labels(label_list);
     list *plist = get_paths(test_list);
@@ -666,8 +666,8 @@ void csv_classifier(char *datacfg, char *cfgfile, char *weightfile)
 
     list *options = read_data_cfg(datacfg);
 
-    char *test_list = option_find_str(options, "test", "data/test.list");
-    int top = option_find_int(options, "top", 1);
+    char *test_list = option_find_str(options, (char *)"test", (char *)"data/test.list");
+    int top = option_find_int(options, (char *)"top", 1);
 
     list *plist = get_paths(test_list);
 
@@ -706,8 +706,8 @@ void test_classifier(char *datacfg, char *cfgfile, char *weightfile, int target_
 
     list *options = read_data_cfg(datacfg);
 
-    char *test_list = option_find_str(options, "test", "data/test.list");
-    int classes = option_find_int(options, "classes", 2);
+    char *test_list = option_find_str(options, (char *)"test", (char *)"data/test.list");
+    int classes = option_find_int(options, (char *)"classes", 2);
 
     list *plist = get_paths(test_list);
 
@@ -780,7 +780,7 @@ void file_output_classifier(char *datacfg, char *filename, char *weightfile, cha
     list *options = read_data_cfg(datacfg);
 
     //char *label_list = option_find_str(options, "names", "data/labels.list");
-    int classes = option_find_int(options, "classes", 2);
+    int classes = option_find_int(options, (char *)"classes", 2);
 
     list *plist = get_paths(listfile);
 
@@ -1079,14 +1079,14 @@ void run_classifier(int argc, char **argv)
         return;
     }
 
-    char *gpu_list = find_char_arg(argc, argv, "-gpus", 0);
+    char *gpu_list = find_char_arg(argc, argv, (char *)"-gpus", 0);
     int ngpus;
     int *gpus = read_intlist(gpu_list, &ngpus, getGpuIndex());
 
 
-    int cam_index = find_int_arg(argc, argv, "-c", 0);
-    int top = find_int_arg(argc, argv, "-t", 0);
-    int clear = find_arg(argc, argv, "-clear");
+    int cam_index = find_int_arg(argc, argv, (char *)"-c", 0);
+    int top = find_int_arg(argc, argv, (char *)"-t", 0);
+    int clear = find_arg(argc, argv, (char *)"-clear");
     char *data = argv[3];
     char *cfg = argv[4];
     char *weights = (argc > 5) ? argv[5] : 0;

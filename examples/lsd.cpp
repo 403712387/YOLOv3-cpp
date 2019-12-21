@@ -1,4 +1,4 @@
-#include <math.h>
+﻿#include <math.h>
 #include "darknet.h"
 
 /*
@@ -1351,10 +1351,10 @@ void run_lsd(int argc, char **argv)
         return;
     }
 
-    int clear = find_arg(argc, argv, "-clear");
-    int display = find_arg(argc, argv, "-display");
-    int batches = find_int_arg(argc, argv, "-b", 0);
-    char *file = find_char_arg(argc, argv, "-file", "/home/pjreddie/data/imagenet/imagenet1k.train.list");
+    int clear = find_arg(argc, argv, (char *)"-clear");
+    int display = find_arg(argc, argv, (char *)"-display");
+    int batches = find_int_arg(argc, argv, (char *)"-b", 0);
+    char *file = find_char_arg(argc, argv, (char *)"-file", (char *)"/home/pjreddie/data/imagenet/imagenet1k.train.list");
 
     char *cfg = argv[3];
     char *weights = (argc > 4) ? argv[4] : 0;

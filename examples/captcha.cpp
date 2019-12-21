@@ -1,4 +1,4 @@
-#include "darknet.h"
+﻿#include "darknet.h"
 
 void fix_data_captcha(data d, int mask)
 {
@@ -36,11 +36,11 @@ void train_captcha(char *cfgfile, char *weightfile)
     int i = *net->seen/imgs;
     int solved = 1;
     list *plist;
-    char **labels = get_labels("/data/captcha/reimgs.labels.list");
+    char **labels = get_labels((char *)"/data/captcha/reimgs.labels.list");
     if (solved){
-        plist = get_paths("/data/captcha/reimgs.solved.list");
+        plist = get_paths((char *)"/data/captcha/reimgs.solved.list");
     }else{
-        plist = get_paths("/data/captcha/reimgs.raw.list");
+        plist = get_paths((char *)"/data/captcha/reimgs.raw.list");
     }
     char **paths = (char **)list_to_array(plist);
     printf("%d\n", plist->size);
@@ -99,7 +99,7 @@ void test_captcha(char *cfgfile, char *weightfile, char *filename)
     set_batch_network(net, 1);
     srand(2222222);
     int i = 0;
-    char **names = get_labels("/data/captcha/reimgs.labels.list");
+    char **names = get_labels((char *)"/data/captcha/reimgs.labels.list");
     char buff[256];
     char *input = buff;
     int indexes[26];
@@ -132,9 +132,9 @@ void test_captcha(char *cfgfile, char *weightfile, char *filename)
 
 void valid_captcha(char *cfgfile, char *weightfile, char *filename)
 {
-    char **labels = get_labels("/data/captcha/reimgs.labels.list");
+    char **labels = get_labels((char *)"/data/captcha/reimgs.labels.list");
     network *net = load_network(cfgfile, weightfile, 0);
-    list *plist = get_paths("/data/captcha/reimgs.fg.list");
+    list *plist = get_paths((char *)"/data/captcha/reimgs.fg.list");
     char **paths = (char **)list_to_array(plist);
     int N = plist->size;
     int outputs = net->outputs;

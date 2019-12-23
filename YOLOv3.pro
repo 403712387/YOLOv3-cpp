@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 CONFIG  += ordered
 
-SUBDIRS += ./darknet.pro \
+SUBDIRS += \
+        ./darknet.pro \
         ./examples.pro 
         

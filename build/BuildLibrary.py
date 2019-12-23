@@ -81,6 +81,7 @@ def compileModules():
 
     try:
         projectFile = "../" + libraryName + ".pro"
+        (projectPath, projectName) = os.path.split(projectFile)
         if not os.path.exists(projectFile):
             print("not find project file %s"%projectFile)
             raise Exception("not find project file %s"%projectFile)
@@ -93,7 +94,7 @@ def compileModules():
                 lineData = lineData.replace("\\", "")
                 lineData = lineData.strip()
                 (path, file) = os.path.split(lineData)
-                path = path.replace("./", "../src/")
+                path = os.path.join(projectPath, path)
                 if not compileOneModule(path, file):
                     raise Exception("compile  module fail")
 

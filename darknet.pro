@@ -3,7 +3,6 @@ CONFIG -= qt
 CONFIG += c++11 console plugin
 TARGET = darknet
 TEMPLATE = lib
-DESTDIR = ./bin
 OBJECTS_DIR = ./output
 MOC_DIR = ./output
 
@@ -12,10 +11,12 @@ INCLUDEPATH += \
     ./include
 
 win32 {
+DESTDIR = ./bin/windows
 DEFINES += DARKNET_EXPORT=__declspec(dllexport)
 }
 
 unix {
+DESTDIR = ./bin/linux
 DEFINES += DARKNET_EXPORT=
 }
 

@@ -3,7 +3,6 @@ CONFIG -= qt
 CONFIG += c++11 console
 TARGET = darknet
 TEMPLATE = app
-DESTDIR = ./bin
 OBJECTS_DIR = ./output
 MOC_DIR = ./output
 
@@ -12,12 +11,14 @@ INCLUDEPATH += \
     ./include
 
 win32 {
+DESTDIR = ./bin/windows
 DEFINES += DARKNET_EXPORT=__declspec(dllimport)
 LIBS += -L./bin -ldarknet \
     -lWs2_32 -lMswsock
 }
 
 unix {
+DESTDIR = ./bin/linux
 DEFINES += DARKNET_EXPORT=
 LIBS += -L./bin -ldarknet
 }

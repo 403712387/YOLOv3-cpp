@@ -80,7 +80,7 @@ def compileModules():
         createSymbolLink(library)
 
     try:
-        projectFile =  libraryName + ".pro"
+        projectFile = "../" + libraryName + ".pro"
         if not os.path.exists(projectFile):
             print("not find project file %s"%projectFile)
             raise Exception("not find project file %s"%projectFile)

@@ -3,18 +3,16 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
-#if 0
+#ifdef WIN32
+#include <io.h>
+#include <fcntl.h>
+#else
 #include <unistd.h>
 #endif
 #include <float.h>
 #include <limits.h>
 #include <time.h>
-#if 1
-#include <time.h>
-#include <io.h>
-#include <fcntl.h>
 #include <chrono>
-#endif
 #include "utils.h"
 
 

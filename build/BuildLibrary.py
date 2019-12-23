@@ -21,6 +21,9 @@ compileType = "release"
 # 编译器，支持g++和clang
 compiler = "g++"
 
+# 处理器类型，运行在CPU上还是GPU上
+deviceType = "CPU"
+
 #------------------------函数的定义-------------------------#
 
 #清理
@@ -32,7 +35,7 @@ def cleanFiles(path):
 
 #解析参数
 def parseArgs():
-    global compileType, compiler
+    global compileType, compiler, deviceType
 
     if "debug" in sys.argv:
         compileType = "debug"
@@ -43,6 +46,11 @@ def parseArgs():
         compiler = "clang++"
     else:
         compiler = "g++"
+
+    if "gpu" in sys.argv or "GPU" in sys.argv:
+        deviceType = "GPU"
+    else:
+        deviceType = "CPU"
 
 #获取git的信息（获取当前分支以及commit id）
 def getGitInfo():
@@ -109,7 +117,7 @@ def compileModules():
 
 #编译一个模块
 def compileOneModule(modulePath, module):
-    global gitBranch, gitCommitId, compileType, compiler
+    global gitBranch, gitCommitId, compileType, compiler, deviceType
 
     print("\n------------compile module %s-------------"%(module))
     gitBranchMacro = "GIT_BRANCH=%s"%(gitBranch)
@@ -129,7 +137,7 @@ def compileOneModule(modulePath, module):
         os.remove(makefileName)
 
     # 生成新的makefile
-    os.system("qmake DEFINES+=%s DEFINES+=%s QMAKE_CXX=%s QMAKE_LINK=%s CONFIG+=%s -o %s %s"%(gitBranchMacro, gitCommitMacro, compiler, compiler, compileType, makefileName, moduleProFile))
+    os.system("qmake DEFINES+=%s DEFINES+=%s DEFINES+=%s QMAKE_CXX=%s QMAKE_LINK=%s CONFIG+=%s -o %s %s"%(deviceType, gitBranchMacro, gitCommitMacro, compiler, compiler, compileType, makefileName, moduleProFile))
     if not os.path.exists(makefileName):
         print("qmake fail, module name:" + module + ", not find makefile")
         return False
@@ -181,7 +189,7 @@ def removeSymbolLink(path):
 
 #构建服务
 def buildService():
-    outputDir = "./bin"
+    outputDir = "../bin"
     parseArgs()
     cleanFiles(outputDir)
     getGitInfo()

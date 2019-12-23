@@ -20,6 +20,11 @@ DESTDIR = ./bin/linux
 DEFINES += DARKNET_EXPORT=
 }
 
+contains(DEFINES,GPU) {
+DEFINES += GPU=1
+DEFINES += CUDNN=1
+}
+
 HEADERS += \
     include/darknet.h \
     src/activation_layer.h \
@@ -119,3 +124,17 @@ SOURCES += \
     src/upsample_layer.cpp \
     src/utils.cpp \
     src/yolo_layer.cpp
+
+contains(DEFINES,GPU) {
+SOURCES += \
+    src/activation_kernels.cu \
+    src/avgpool_layer_kernels.cu \
+    src/blas_kernels.cu \
+    src/col2im_kernels.cu \
+    src/convolutional_kernels.cu \
+    src/crop_layer_kernels.cu \
+    src/deconvolutional_kernels.cu \
+    src/dropout_layer_kernels.cu \
+    src/im2col_kernels.cu \
+    src/maxpool_layer_kernels.cu
+}

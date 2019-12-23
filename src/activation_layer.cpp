@@ -3,6 +3,7 @@
 #include "cuda.h"
 #include "blas.h"
 #include "gemm.h"
+#include "darknet.h"
 
 #include <math.h>
 #include <stdio.h>

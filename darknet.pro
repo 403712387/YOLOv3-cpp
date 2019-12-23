@@ -16,7 +16,7 @@ DEFINES += DARKNET_EXPORT=__declspec(dllexport)
 }
 
 unix {
-DEFINES += DARKNET_EXPORT
+DEFINES += DARKNET_EXPORT=
 }
 
 HEADERS += \

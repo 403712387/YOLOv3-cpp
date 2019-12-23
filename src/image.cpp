@@ -3,6 +3,7 @@
 #include "blas.h"
 #include "cuda.h"
 #include <stdio.h>
+#include "darknet.h"
 #include <math.h>
 
 #define STB_IMAGE_IMPLEMENTATION

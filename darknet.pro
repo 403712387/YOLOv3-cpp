@@ -1,6 +1,6 @@
 CONFIG -= app_bundle
 CONFIG -= qt
-CONFIG += c++11 console
+CONFIG += c++11 console plugin
 TARGET = darknet
 TEMPLATE = lib
 DESTDIR = ./bin

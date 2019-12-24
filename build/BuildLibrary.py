@@ -49,6 +49,7 @@ def parseArgs():
 
     if "gpu" in sys.argv or "GPU" in sys.argv:
         deviceType = "GPU"
+        compiler = "nvcc"
     else:
         deviceType = "CPU"
 

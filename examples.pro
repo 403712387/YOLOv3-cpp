@@ -13,14 +13,14 @@ INCLUDEPATH += \
 win32 {
 DESTDIR = ./bin/windows
 DEFINES += DARKNET_EXPORT=__declspec(dllimport)
-LIBS += -L./bin -ldarknet \
+LIBS += -L./bin/windows -ldarknet \
     -lWs2_32 -lMswsock
 }
 
 unix {
 DESTDIR = ./bin/linux
 DEFINES += DARKNET_EXPORT=
-LIBS += -L./bin -ldarknet
+LIBS += -L./bin/linux -ldarknet
 }
 
 HEADERS += \

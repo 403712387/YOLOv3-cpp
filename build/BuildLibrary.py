@@ -48,10 +48,10 @@ def parseArgs():
         compiler = "g++"
 
     if "gpu" in sys.argv or "GPU" in sys.argv:
-        deviceType = "GPU"
+        deviceType = "gpu"
         compiler = "nvcc"
     else:
-        deviceType = "CPU"
+        deviceType = "cpu"
 
 #获取git的信息（获取当前分支以及commit id）
 def getGitInfo():

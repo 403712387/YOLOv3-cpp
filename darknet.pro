@@ -20,7 +20,7 @@ DESTDIR = ./bin/linux
 DEFINES += DARKNET_EXPORT=
 }
 
-contains(DEFINES,GPU) {
+contains(DEFINES,gpu) {
 DEFINES += GPU=1
 DEFINES += CUDNN=1
 }
@@ -125,7 +125,7 @@ SOURCES += \
     src/utils.cpp \
     src/yolo_layer.cpp
 
-contains(DEFINES,GPU) {
+contains(DEFINES,gpu) {
 SOURCES += \
     src/activation_kernels.cu \
     src/avgpool_layer_kernels.cu \
